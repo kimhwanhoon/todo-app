@@ -4,8 +4,6 @@ const Cards = ({ cardsArr, setCardsArr }) => {
   // DELETE BUTTON => DELETE CARD
   const deleteClickHandler = (key) => {
     const filteredArr = cardsArr.filter((card) => {
-      console.log('card.id', card.id);
-      console.log('key', key);
       return card.id !== key;
     });
     setCardsArr(filteredArr);
