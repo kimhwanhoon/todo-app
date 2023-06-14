@@ -2,9 +2,12 @@
 
 import { ChangeEvent, useState } from 'react';
 
-const Input = ({ typedValue, setTypedValue, cardsArr, setCardsArr }) => {
+const Input = (props) => {
   const todoTextOnChangeHandler = (e: ChangeEvent) => {
-    setTypedValue(e.target.value);
+    props.setTypedValue(e.target.value);
+  };
+  const nameOnChangeHandler = (e: ChangeEvent) => {
+    props.setTypedName(e.target.value);
   };
 
   // ADD BUTTON => ADD CARD
@@ -17,12 +20,17 @@ const Input = ({ typedValue, setTypedValue, cardsArr, setCardsArr }) => {
     const filteredMinute = String(minute).length === 1 ? '0' + minute : minute;
     const time = `${year}.${month}.${day} ${hour}:${filteredMinute}`;
     console.log(time);
-    setCardsArr((prevCardsArr) => {
+    props.setCardsArr((prevCardsArr) => {
       const updatedCardsArr = [
-        ...cardsArr,
-        { id: prevCardsArr.length, text: typedValue, by: '김환훈', time: time },
+        ...props.cardsArr,
+        {
+          id: prevCardsArr.length,
+          text: props.typedValue,
+          by: props.typedName,
+          time: time,
+        },
       ];
-      setTypedValue('');
+      props.setTypedValue('');
       return updatedCardsArr;
     });
   };
@@ -32,14 +40,22 @@ const Input = ({ typedValue, setTypedValue, cardsArr, setCardsArr }) => {
       <div className="flex flex-col items-center w-2/3">
         <h2 className="text-gray-800 py-5 text-xl">To do</h2>
         <textarea
-          className="shadow-md resize-none h-24 rounded-md w-full focus:outline-indigo-400 p-4"
-          value={typedValue}
+          className="shadow-md resize-none h-40 rounded-md w-96 focus:outline-indigo-400 p-4 focus:scale-105 ease-out duration-300 "
+          value={props.typedValue}
+          placeholder="Please write new to do task."
           onChange={(e) => todoTextOnChangeHandler(e)}
+        />
+        <input
+          type="text"
+          className="w-96 shadow-md text-center rounded-md mt-3 px-3 focus:outline-indigo-400 focus:scale-105 ease-out duration-300"
+          placeholder="Write your name"
+          value={props.typedName}
+          onChange={(e) => nameOnChangeHandler(e)}
         />
         <input
           type="button"
           value="Add"
-          className="mt-5 h-8 w-2/6 bg-indigo-500 shadow-lg shadow-indigo-500/50 rounded-lg text-white hover:bg-indigo-400 cursor-pointer"
+          className="mt-5 h-8 w-2/6 bg-indigo-500 shadow-lg shadow-indigo-500/50 rounded-lg text-white hover:bg-indigo-400 cursor-pointer active:scale-95 ease-out duration-300"
           onClick={addOnClickHandler}
         />
       </div>
