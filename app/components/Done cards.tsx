@@ -33,7 +33,9 @@ const DoneCards = ({ doneCardArr, setDoneCardArr, cardsArr, setCardsArr }) => {
 
   return (
     <div className="flex flex-col gap-2 w-full px-16">
-      <h1 className="ml-52 w-32 text-xl font-medium text-gray-700">Done</h1>
+      <h1 className="ml-52 w-32 text-xl font-medium text-gray-700 pt-5">
+        Done
+      </h1>
       <div
         id="divider0"
         className="w-24 border-b-4 border-indigo-950 ml-52 mb-3"
