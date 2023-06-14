@@ -3,10 +3,12 @@
 const Cards = ({ cardsArr, setCardsArr }) => {
   // DELETE BUTTON => DELETE CARD
   const deleteClickHandler = (key) => {
-    const filteredArr = cardsArr.filter((card) => {
-      return card.id !== key;
-    });
-    setCardsArr(filteredArr);
+    if (confirm('Are you sure to delete this task?')) {
+      const filteredArr = cardsArr.filter((card) => {
+        return card.id !== key;
+      });
+      setCardsArr(filteredArr);
+    }
   };
 
   return (
