@@ -22,7 +22,7 @@ state는 총 4개를 사용하였으며, 모두 `main.jsx`에서 생성하여 �
 |    [cardsArr, setCardsArr]    | 진행중인 todo의 정보를 갖는 state  |
 | [doneCardArr, setDoneCardArr] |  완료된 todo의 정보를 갖는 state   |
 |  [typedValue, setTypedValue]  | todo textarea의 value를 갖는 state |
-|   [typedName, setTypedName]   |   todo name의 value를 갖는 state   |
+|   [typedTime, setTypedTime]   |   todo time의 value를 갖는 state   |
 
 ---
 
