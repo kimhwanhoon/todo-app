@@ -1,14 +1,15 @@
 'use client';
 
-const InProgressCards = ({
-  cardsArr,
-  setCardsArr,
-  doneCardArr,
-  setDoneCardArr,
-}) => {
+const InProgressCards = ({ cardsArr, setCardsArr, setDoneCardArr }) => {
   // DELETE BUTTON => DELETE CARD
   const deleteClickHandler = (key) => {
     if (confirm('Are you sure to delete this task?')) {
+      const localProgressCards = JSON.parse(localStorage.getItem('progress'));
+      const updatedProgressCards = localProgressCards.filter(
+        (card) => card.id !== key
+      );
+      localStorage.setItem('progress', JSON.stringify(updatedProgressCards));
+
       const filteredArr = cardsArr.filter((card) => {
         return card.id !== key;
       });
@@ -18,16 +19,24 @@ const InProgressCards = ({
   // Checked to send to Done section
   const checkButtonClickHandler = (key) => {
     if (confirm('Have you done your task?')) {
-      const tempArr = [];
-      cardsArr.forEach((card) => {
-        if (key === card.id) {
-          tempArr.push(card);
-          setDoneCardArr((prevCard) => {
-            const doneCard = [...prevCard, card];
-            return doneCard;
-          });
-        }
-      });
+      const targetCard = cardsArr.filter((card) => card.id === key);
+      // local done에 추가
+      const localDoneCards = JSON.parse(localStorage.getItem('done')) ?? [];
+      const newDoneCardsToSaveOnLocal = [...localDoneCards, ...targetCard];
+      localStorage.setItem('done', JSON.stringify(newDoneCardsToSaveOnLocal));
+      setDoneCardArr(newDoneCardsToSaveOnLocal);
+      // local progress에서 삭제
+      // set함수로 랜더시키기
+      const localProgressCards =
+        JSON.parse(localStorage.getItem('progress')) ?? [];
+      const newProgressCardsToSaveOnLocal = localProgressCards.filter(
+        (card) => card.id !== key
+      );
+      localStorage.setItem(
+        'progress',
+        JSON.stringify(newProgressCardsToSaveOnLocal)
+      );
+
       // in progress에 있는 요소 없애기
       const filteredArr = cardsArr.filter((card) => {
         return card.id !== key;
@@ -62,7 +71,7 @@ const ProjectCards = ({
   deleteClickHandler,
   checkButtonClickHandler,
 }) => {
-  const Cards = cardsArr.map((card: [], index: number) => {
+  const Cards = cardsArr.map((card) => {
     return (
       <div
         key={card.id}

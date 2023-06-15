@@ -1,7 +1,5 @@
 import Header from './components/header';
-import Input from './components/input';
-import Cards from './components/In progress cards';
-import Main from './main';
+import Main from './main.jsx';
 
 export default function Home() {
   return (
