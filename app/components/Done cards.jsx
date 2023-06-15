@@ -1,8 +1,6 @@
 'use client';
 
-
 const DoneCards = ({ doneCardArr, setDoneCardArr, setCardsArr }) => {
-
   // DELETE DONE CARD
   const deleteDoneCard = (key) => {
     if (confirm('Are you sure to delete this task?')) {
@@ -71,26 +69,22 @@ const ProjectCards = ({
   deleteDoneCard,
   backButtonClickHandler,
 }) => {
-
   const Cards = doneCardArr.map((card) => {
-
     return (
       <div
         key={card.id}
-        className="flex flex-col gap-2 shadow-md shadow-indigo-200 rounded-md w-48 bg-white h-44"
+        className="flex flex-col shadow-md shadow-indigo-200 rounded-md w-2/3 bg-white"
       >
-        <textarea
-          readOnly
-          className="resize-none p-4 w-full h-24 outline-none rounded-md text-sm text-gray-800 text-center"
-          value={card.text}
-        ></textarea>
-        <div className="w-32 pt-1 border-t border-t-gray-400 flex justify-center mx-auto">
-          <p className="text-sm px-3 text-center">{card.time}</p>
-        </div>
-        <div className="flex justify-between items-center pt-2 border-t border-t-gray-200">
-          <div className="flex gap-3 pl-3">
+        <div className="flex justify-between border-b border-b-slate-300 items-center">
+          <input
+            type="text"
+            readOnly
+            className="w-full resize-none px-5 h-12 outline-none rounded-t-md  text-gray-800 "
+            value={card.text}
+          />
+          <div className="flex gap-3 pr-7">
             <img
-              className="w-6 h-6  cursor-pointer"
+              className="w-6 h-6 ml-3 cursor-pointer"
               src="/back.png"
               alt="back"
               onClick={() => backButtonClickHandler(card.id)}
@@ -102,8 +96,11 @@ const ProjectCards = ({
               onClick={() => deleteDoneCard(card.id)}
             />
           </div>
+        </div>
 
-          <h1 className="text-right px-3 mr-2">{card.by}</h1>
+        <div className="flex justify-between items-center py-2">
+          <h1 className="pl-5 mr-1 text-gray-700 tracking-wide">DONE !</h1>
+          <p className="w-64 text-xs px-3 text-right">Wrote at: {card.time}</p>
         </div>
       </div>
     );

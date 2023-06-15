@@ -4,30 +4,20 @@ const Input = (props) => {
   const todoTextOnChangeHandler = (e) => {
     props.setTypedValue(e.target.value);
   };
-  const nameOnChangeHandler = (e) => {
-
-    props.setTypedName(e.target.value);
+  const TimeOnChangeHandler = (e) => {
+    props.setTypedTime(e.target.value);
   };
 
   // ADD BUTTON => ADD CARD
   const addOnClickHandler = (e) => {
     // if no value on textarea or name input, make error message and return.
-    if (props.typedValue === '' && props.typedName !== '') {
+    if (props.typedValue === '' && props.typedTime !== '') {
       alert('Please write your task.');
       const textarea = e.target.parentNode.querySelector('#todo-textarea');
       textarea.focus();
       return;
     } else if (props.typedValue === '') {
       alert('Please write your task.');
-      return;
-    } else if (props.typedName === '') {
-      alert('Plase write your name.');
-      e.target.focus();
-      return;
-    } else if (props.typedName.length > 8) {
-      alert('Your name is too long.');
-      const nameInput = e.target.parentNode.querySelector('#name-input');
-      nameInput.focus();
       return;
     }
     const year = new Date().getFullYear();
@@ -43,7 +33,7 @@ const Input = (props) => {
         {
           id: prev.length,
           text: props.typedValue,
-          by: props.typedName,
+          by: props.typedTime,
           time: time,
         },
       ];
@@ -51,13 +41,13 @@ const Input = (props) => {
       return updatedCardsArr;
     });
     props.setTypedValue('');
-    props.setTypedName('');
+    props.setTypedTime('');
   };
   // type enter on name input => Activates addOnClickHandler function
-  const handleKeyPressOnNameInput = (e) => {
+  const handleKeyPressOnTimeInput = (e) => {
     if (e.key === 'Enter') {
-      const nameInput = e.target.parentNode.querySelector('#name-input');
-      nameInput.blur();
+      const timeInput = e.target.parentNode.querySelector('#time-input');
+      timeInput.blur();
       addOnClickHandler(e);
     } else if (e.key === 'Escape') {
       // typed ESC, get rid of focus on input
@@ -81,32 +71,35 @@ const Input = (props) => {
           id="divider-addYourTodo"
           className="w-3/4 border-b-4 border-b-indigo-950 mb-5"
         ></div>
-        <textarea
-          autoComplete="off"
-          id="todo-textarea"
-          className="text-gray-600 shadow-md resize-none h-40 rounded-md w-96 focus:outline-indigo-400 p-4 focus:scale-105 ease-out duration-300 "
-          value={props.typedValue}
-          placeholder="Please write new to do task."
-          onChange={(e) => todoTextOnChangeHandler(e)}
-          onKeyDown={handleKeyPressOnTodoTextarea}
-        />
-        <input
-          id="name-input"
-          autoComplete="off"
-          type="text"
-          className="text-gray-600 w-96 shadow-md text-center rounded-md mt-3 px-3 focus:outline-indigo-400 focus:scale-105 ease-out duration-300"
-          placeholder="Write your name"
-          value={props.typedName}
-          onChange={(e) => nameOnChangeHandler(e)}
-          onKeyDown={handleKeyPressOnNameInput}
-        />
-        <input
-          id="add-button"
-          type="button"
-          value="Add"
-          className="mt-5 h-8 w-2/6 bg-indigo-500 shadow-lg shadow-indigo-500/50 rounded-lg text-white hover:bg-indigo-400 cursor-pointer active:scale-95 ease-out duration-300 hover:scale-x-105"
-          onClick={(e) => addOnClickHandler(e)}
-        />
+        <div className="flex items-center">
+          <div>
+            <input
+              autoComplete="off"
+              id="todo-textarea"
+              className="text-gray-600 shadow-md resize-none h-10 rounded-md w-96 focus:outline-indigo-400 p-4 focus:scale-105 ease-out duration-300"
+              value={props.typedValue}
+              placeholder="Please write new to do task."
+              onChange={(e) => todoTextOnChangeHandler(e)}
+              onKeyDown={handleKeyPressOnTodoTextarea}
+            />
+            <input
+              id="time-input"
+              type="time"
+              className="text-gray-600 w-96 shadow-md rounded-md mt-3 p-4 focus:outline-indigo-400 focus:scale-105 ease-out duration-300 h-10 text-center"
+              value={props.typedTime}
+              onChange={(e) => TimeOnChangeHandler(e)}
+              onKeyDown={handleKeyPressOnTimeInput}
+            />
+          </div>
+
+          <input
+            id="add-button"
+            type="button"
+            value="Add"
+            className="w-2/6 h-full bg-indigo-500 shadow-lg shadow-indigo-500/50 rounded-lg text-white hover:bg-indigo-400 cursor-pointer active:scale-95 ease-out duration-300 hover:scale-x-105"
+            onClick={(e) => addOnClickHandler(e)}
+          />
+        </div>
       </div>
     </div>
   );

@@ -1,34 +1,79 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 리액트 프로젝트 To do App
 
-## Getting Started
+이번에 배운 `setState` 훅과 `props`를 사용하여 to do app을 만들었습니다.
 
-First, run the development server:
+제 프로젝트는 **next.js**로 만들어 졌습니다. <br>그리고 `.tsx`와 `.jsx`를 혼합 사용하였으며, **tailwindcss**를 사용했습니다.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+`yarn dev` 또는 `npm run dev`로 실행 가능합니다.
+
+`page.tsx`에서 `header.tsx`와 `main.jsx` 컴포넌트를 받으며,<br>
+`main.jsx`에서 나머지 모든 컴포넌트를 받습니다.
+
+state는 총 4개를 사용하였으며, 모두 `main.jsx`에서 생성하여 자식 컴포넌트인 `Done cards.jsx`, `In progress cards.jsx`, `input.jsx`로 props를 물려줬으며, 자식 컴포넌트는 그 props를 받아서 함수를 만들었습니다.
+
+---
+
+사용한 state는 다음과 같습니다.
+
+### States
+
+|             state             |                설명                |
+| :---------------------------: | :--------------------------------: |
+|    [cardsArr, setCardsArr]    | 진행중인 todo의 정보를 갖는 state  |
+| [doneCardArr, setDoneCardArr] |  완료된 todo의 정보를 갖는 state   |
+|  [typedValue, setTypedValue]  | todo textarea의 value를 갖는 state |
+|   [typedName, setTypedName]   |   todo name의 value를 갖는 state   |
+
+---
+
+### 문제점
+
+`main.jsx` 파일에서 아직 배우지 않은 다음의 함수를 사용하였습니다.
+
+```js
+useEffect(() => {
+  const progressCardsOnLocal =
+    JSON.parse(localStorage.getItem('progress')) ?? [];
+  const doneCardsOnLocal = JSON.parse(localStorage.getItem('done')) ?? [];
+  setCardsArr(progressCardsOnLocal);
+  setDoneCardArr(doneCardsOnLocal);
+}, []); //빈 배열을 의미하는 두 번째 인자로 전달하여 페이지가 마운트될 때 한 번만 실행되도록 설정
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+`useEffect`를 사용하기 전에는 로딩했을 때 상기 함수가 무한으로 반복되었기 때문에 `useEffect`훅을 사용했습니다.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+`main.jsx`하나의 파일에서 많은 `props`들을 자식 컴포넌트에 보내다 보니까 코드가 지저분한 느낌이 드는것 같습니다.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```js
+...
+return (
+    <>
+      <Input
+        typedValue={typedValue}
+        setTypedValue={setTypedValue}
+        cardsArr={cardsArr}
+        setCardsArr={setCardsArr}
+        typedName={typedName}
+        setTypedName={setTypedName}
+        doneCardArr={doneCardArr}
+        setDoneCardArr={setDoneCardArr}
+        saveOnLocalProgress={saveOnLocalProgress}
+      />
+      <InProgressCards
+        cardsArr={cardsArr}
+        setCardsArr={setCardsArr}
+        doneCardArr={doneCardArr}
+        setDoneCardArr={setDoneCardArr}
+        saveOnLocalDone={saveOnLocalDone}
+      />
+      <DoneCards
+        doneCardArr={doneCardArr}
+        setDoneCardArr={setDoneCardArr}
+        cardsArr={cardsArr}
+        setCardsArr={setCardsArr}
+      />
+    </>
+  );
+};
+...
+```

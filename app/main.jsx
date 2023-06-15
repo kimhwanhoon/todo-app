@@ -1,20 +1,20 @@
 'use client';
-import { useEffect, useState } from 'react';
 
+import { useEffect, useState } from 'react';
 import Input from './components/input.jsx';
 import InProgressCards from './components/In progress cards.jsx';
 import DoneCards from './components/Done cards.jsx';
 
-
 const Main = () => {
   //카드 정보 배열
   const [cardsArr, setCardsArr] = useState([]);
+  // DONE 카드 정보 배열
+  const [doneCardArr, setDoneCardArr] = useState([]);
   // Todo textarea value 배열
   const [typedValue, setTypedValue] = useState('');
   // Todo name value 배열
-  const [typedName, setTypedName] = useState('');
-  // DONE 카드 정보 배열
-  const [doneCardArr, setDoneCardArr] = useState([]);
+  const [typedTime, setTypedTime] = useState('');
+
   // local 받아오기
   useEffect(() => {
     const progressCardsOnLocal =
@@ -40,8 +40,8 @@ const Main = () => {
         setTypedValue={setTypedValue}
         cardsArr={cardsArr}
         setCardsArr={setCardsArr}
-        typedName={typedName}
-        setTypedName={setTypedName}
+        typedTime={typedTime}
+        setTypedTime={setTypedTime}
         doneCardArr={doneCardArr}
         setDoneCardArr={setDoneCardArr}
         saveOnLocalProgress={saveOnLocalProgress}
