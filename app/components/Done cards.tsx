@@ -4,6 +4,10 @@ const DoneCards = ({ doneCardArr, setDoneCardArr, cardsArr, setCardsArr }) => {
   // DELETE DONE CARD
   const deleteDoneCard = (key) => {
     if (confirm('Are you sure to delete this task?')) {
+      const localDoneCards = JSON.parse(localStorage.getItem('done'));
+      const updatedDoneCards = localDoneCards.filter((card) => card.id !== key);
+      localStorage.setItem('done', JSON.stringify(updatedDoneCards));
+
       const filteredArr = doneCardArr.filter((card) => {
         return card.id !== key;
       });
@@ -13,16 +17,20 @@ const DoneCards = ({ doneCardArr, setDoneCardArr, cardsArr, setCardsArr }) => {
   // BACK BUTTON to send back to in progress cards
   const backButtonClickHandler = (key) => {
     if (confirm('Wanna put it back to In Progress?')) {
-      const tempArr = [];
-      doneCardArr.forEach((card) => {
-        if (key === card.id) {
-          tempArr.push(card);
-          setCardsArr((prevCard) => {
-            const backCard = [...prevCard, card];
-            return backCard;
-          });
-        }
-      });
+      const targetCard = doneCardArr.filter((card) => card.id === key);
+      // done 로컬에서 삭제
+      const localDoneCards = JSON.parse(localStorage.getItem('done'));
+      const updatedLocalDoneCards = localDoneCards.filter(
+        (card) => card.id !== key
+      );
+      localStorage.setItem('done', JSON.stringify(updatedLocalDoneCards));
+
+      // progress 로컬에 추가
+      const localProgressCards = JSON.parse(localStorage.getItem('progress'));
+      const updatedProgressCards = [...localProgressCards, ...targetCard];
+      localStorage.setItem('progress', JSON.stringify(updatedProgressCards));
+      setCardsArr(updatedProgressCards); //  업데이트로 랜더링하기
+
       // in progress에 있는 요소 없애기
       const filteredArr = doneCardArr.filter((card) => {
         return card.id !== key;
