@@ -1,12 +1,11 @@
 'use client';
 
-import { ChangeEvent, useState } from 'react';
-
 const Input = (props) => {
-  const todoTextOnChangeHandler = (e: ChangeEvent) => {
+  const todoTextOnChangeHandler = (e) => {
     props.setTypedValue(e.target.value);
   };
-  const nameOnChangeHandler = (e: ChangeEvent) => {
+  const nameOnChangeHandler = (e) => {
+
     props.setTypedName(e.target.value);
   };
 

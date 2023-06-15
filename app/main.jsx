@@ -1,8 +1,10 @@
 'use client';
 import { useEffect, useState } from 'react';
-import Input from './components/input';
-import InProgressCards from './components/In progress cards';
-import DoneCards from './components/Done cards';
+
+import Input from './components/input.jsx';
+import InProgressCards from './components/In progress cards.jsx';
+import DoneCards from './components/Done cards.jsx';
+
 
 const Main = () => {
   //카드 정보 배열
@@ -23,7 +25,6 @@ const Main = () => {
   }, []); //빈 배열을 의미하는 두 번째 인자로 전달하여 페이지가 마운트될 때 한 번만 실행되도록 설정
   // local에 저장하기 progress
   const saveOnLocalProgress = (prevCardsArr) => {
-    const localData = JSON.parse(localStorage.getItem('progress')) ?? [];
     localStorage.setItem('progress', JSON.stringify(prevCardsArr));
   };
   // local에 저장하기 done

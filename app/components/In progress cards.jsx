@@ -1,12 +1,8 @@
 'use client';
 
-const InProgressCards = ({
-  cardsArr,
-  setCardsArr,
-  doneCardArr,
-  setDoneCardArr,
-  saveOnLocalDone,
-}) => {
+
+const InProgressCards = ({ cardsArr, setCardsArr, setDoneCardArr }) => {
+
   // DELETE BUTTON => DELETE CARD
   const deleteClickHandler = (key) => {
     if (confirm('Are you sure to delete this task?')) {
@@ -77,7 +73,9 @@ const ProjectCards = ({
   deleteClickHandler,
   checkButtonClickHandler,
 }) => {
-  const Cards = cardsArr.map((card: [], index: number) => {
+
+  const Cards = cardsArr.map((card) => {
+
     return (
       <div
         key={card.id}

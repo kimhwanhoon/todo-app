@@ -1,6 +1,8 @@
 'use client';
 
-const DoneCards = ({ doneCardArr, setDoneCardArr, cardsArr, setCardsArr }) => {
+
+const DoneCards = ({ doneCardArr, setDoneCardArr, setCardsArr }) => {
+
   // DELETE DONE CARD
   const deleteDoneCard = (key) => {
     if (confirm('Are you sure to delete this task?')) {
@@ -69,7 +71,9 @@ const ProjectCards = ({
   deleteDoneCard,
   backButtonClickHandler,
 }) => {
-  const Cards = doneCardArr.map((card: {}) => {
+
+  const Cards = doneCardArr.map((card) => {
+
     return (
       <div
         key={card.id}
