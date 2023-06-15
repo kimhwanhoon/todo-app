@@ -19,6 +19,10 @@ const Input = (props) => {
     } else if (props.typedValue === '') {
       alert('Please write your task.');
       return;
+    } else if (props.typedTime === '') {
+      alert('Please choose target time.');
+      e.target.focus();
+      return;
     }
     const year = new Date().getFullYear();
     const month = new Date().getMonth();
