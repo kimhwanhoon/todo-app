@@ -55,6 +55,8 @@ const Input = (props) => {
   // type enter on name input => Activates addOnClickHandler function
   const handleKeyPressOnNameInput = (e) => {
     if (e.key === 'Enter') {
+      const nameInput = e.target.parentNode.querySelector('#name-input');
+      nameInput.blur();
       addOnClickHandler(e);
     } else if (e.key === 'Escape') {
       // typed ESC, get rid of focus on input
