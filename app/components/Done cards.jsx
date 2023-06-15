@@ -41,13 +41,16 @@ const DoneCards = ({ doneCardArr, setDoneCardArr, setCardsArr }) => {
 
   return (
     <div className="flex flex-col gap-2 w-full px-16">
-      <h1 className="ml-52 w-32 text-xl font-medium text-gray-700 pt-5">
-        Done
-      </h1>
-      <div
-        id="divider0"
-        className="w-24 border-b-4 border-indigo-950 ml-52 mb-3"
-      ></div>
+      <div className="flex flex-col items-center divider">
+        <h1 className="divider-h1 w-32 text-xl font-medium text-gray-700 pt-5">
+          Done
+        </h1>
+        <div
+          id="divider0"
+          className="mt-3 w-24 border-b-4 border-indigo-950 mb-3"
+        ></div>
+      </div>
+
       <div
         id="done-card-list"
         className="flex flex-wrap gap-5 justify-center mb-10"
@@ -73,7 +76,7 @@ const ProjectCards = ({
     return (
       <div
         key={card.id}
-        className="flex flex-col shadow-md shadow-indigo-200 rounded-md w-2/3 bg-white"
+        className="done-cards flex flex-col shadow-md shadow-indigo-200 rounded-md w-2/3 bg-white"
       >
         <div className="flex justify-between border-b border-b-slate-300 items-center">
           <input
@@ -84,13 +87,13 @@ const ProjectCards = ({
           />
           <div className="flex gap-3 pr-7">
             <img
-              className="w-6 h-6 ml-3 cursor-pointer"
+              className="icon w-6 h-6 ml-3 cursor-pointer"
               src="/back.png"
               alt="back"
               onClick={() => backButtonClickHandler(card.id)}
             />
             <img
-              className="w-6 h-6  cursor-pointer"
+              className="icon w-6 h-6  cursor-pointer"
               src="/delete.png"
               alt="delete"
               onClick={() => deleteDoneCard(card.id)}

@@ -33,3 +33,38 @@ header {
     rgba(36, 59, 85, 1) 100%
   );
 }
+
+.divider {
+  padding-right: 50%;
+}
+.divider-h1 {
+  margin-left: 2rem;
+}
+
+#CONTAINER {
+  max-width: 1200px;
+}
+
+.progress-cards {
+  transition: 0.3s ease-in-out;
+}
+
+.progress-cards:hover {
+  transform: scale(1.01);
+}
+
+.done-cards {
+  transition: 0.3s ease-in-out;
+}
+
+.done-cards:hover {
+  transform: scale(1.01);
+}
+
+.icon {
+  transition: 0.3s ease-in-out;
+}
+
+.icon:hover {
+  transform: scale(1.1);
+}

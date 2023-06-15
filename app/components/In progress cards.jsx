@@ -1,7 +1,7 @@
 'use client';
 
 const InProgressCards = ({ cardsArr, setCardsArr, setDoneCardArr }) => {
-  // DELETE BUTTON => DELETE CARD
+  // DELETE BUTTON CLICK => DELETE CARD
   const deleteClickHandler = (key) => {
     if (confirm('Are you sure to delete this task?')) {
       const localProgressCards = JSON.parse(localStorage.getItem('progress'));
@@ -17,7 +17,7 @@ const InProgressCards = ({ cardsArr, setCardsArr, setDoneCardArr }) => {
     }
   };
   // Checked to send to Done section
-  const checkButtonClickHandler = (key) => {
+  const checkButtonClickHandler = (e, key) => {
     if (confirm('Have you done your task?')) {
       const targetCard = cardsArr.filter((card) => card.id === key);
       // local done에 추가
@@ -41,18 +41,25 @@ const InProgressCards = ({ cardsArr, setCardsArr, setDoneCardArr }) => {
       const filteredArr = cardsArr.filter((card) => {
         return card.id !== key;
       });
+
       setCardsArr(filteredArr);
+      // 애니메이션 구현
+      const eventTargetCard = e.target.parentNode.parentNode.parentNode;
+      eventTargetCard;
     }
   };
   return (
     <div className="flex flex-col gap-2 w-full px-16">
-      <h1 className="ml-52 w-32 text-xl font-medium text-gray-700">
-        In Progress
-      </h1>
-      <div
-        id="divider0"
-        className="w-24 border-b-4 border-indigo-950 ml-52 mb-3"
-      ></div>
+      <div className="flex flex-col items-center divider">
+        <h1 className="divider-h1 w-32 text-xl font-medium text-gray-700">
+          In Progress
+        </h1>
+        <div
+          id="divider0"
+          className=" pt-3 w-24 border-b-4 border-indigo-950 mb-3"
+        ></div>
+      </div>
+
       <div id="card-list" className="flex flex-wrap gap-5 justify-center">
         <ProjectCards
           cardsArr={cardsArr}
@@ -75,7 +82,7 @@ const ProjectCards = ({
     return (
       <div
         key={card.id}
-        className="flex flex-col shadow-md shadow-indigo-200 rounded-md w-2/3 bg-white"
+        className="progress-cards flex flex-col shadow-md shadow-indigo-200 rounded-md w-2/3 bg-white"
       >
         <div className="flex justify-between border-b border-b-slate-300 items-center">
           <input
@@ -86,13 +93,13 @@ const ProjectCards = ({
           />
           <div className="flex gap-3 pr-7">
             <img
-              className="w-6 h-6 ml-3 cursor-pointer"
+              className="icon w-6 h-6 ml-3 cursor-pointer"
               src="/check.png"
               alt=""
-              onClick={() => checkButtonClickHandler(card.id)}
+              onClick={(e) => checkButtonClickHandler(e, card.id)}
             />
             <img
-              className="w-6 h-6  cursor-pointer"
+              className="icon w-6 h-6  cursor-pointer"
               src="/delete.png"
               alt=""
               onClick={() => deleteClickHandler(card.id)}
@@ -102,8 +109,10 @@ const ProjectCards = ({
 
         <div className="flex justify-between items-center py-2">
           <h1 className="pl-5 mr-1 text-xs text-gray-700">
-            Must done by{' '}
-            <span className="pl-1 text-red-600 text-sm">{card.by}</span>
+            Must done by
+            <span className="pl-1 text-red-600 text-sm font-medium">
+              {card.by}
+            </span>
           </h1>
           <p className="w-64 text-xs px-3 text-right">Wrote at: {card.time}</p>
         </div>
