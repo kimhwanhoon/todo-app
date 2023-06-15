@@ -23,6 +23,7 @@ const Input = (props) => {
       return;
     } else if (props.typedName === '') {
       alert('Plase write your name.');
+      e.target.focus();
       return;
     } else if (props.typedName.length > 8) {
       alert('Your name is too long.');
@@ -37,20 +38,21 @@ const Input = (props) => {
     const minute = new Date().getMinutes();
     const filteredMinute = String(minute).length === 1 ? '0' + minute : minute;
     const time = `${year}.${month}.${day} ${hour}:${filteredMinute}`;
-    props.setCardsArr((prevCardsArr) => {
+    props.setCardsArr((prev) => {
       const updatedCardsArr = [
         ...props.cardsArr,
         {
-          id: prevCardsArr.length,
+          id: prev.length,
           text: props.typedValue,
           by: props.typedName,
           time: time,
         },
       ];
-      props.setTypedValue('');
-      props.setTypedName('');
+      props.saveOnLocalProgress(updatedCardsArr);
       return updatedCardsArr;
     });
+    props.setTypedValue('');
+    props.setTypedName('');
   };
   // type enter on name input => Activates addOnClickHandler function
   const handleKeyPressOnNameInput = (e) => {
@@ -104,7 +106,7 @@ const Input = (props) => {
           type="button"
           value="Add"
           className="mt-5 h-8 w-2/6 bg-indigo-500 shadow-lg shadow-indigo-500/50 rounded-lg text-white hover:bg-indigo-400 cursor-pointer active:scale-95 ease-out duration-300 hover:scale-x-105"
-          onClick={addOnClickHandler}
+          onClick={(e) => addOnClickHandler(e)}
         />
       </div>
     </div>
