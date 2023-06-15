@@ -1,8 +1,10 @@
 'use client';
 import { useEffect, useState } from 'react';
+
 import Input from './components/input.jsx';
 import InProgressCards from './components/In progress cards.jsx';
 import DoneCards from './components/Done cards.jsx';
+
 
 const Main = () => {
   //카드 정보 배열

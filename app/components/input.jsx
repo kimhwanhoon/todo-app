@@ -5,6 +5,7 @@ const Input = (props) => {
     props.setTypedValue(e.target.value);
   };
   const nameOnChangeHandler = (e) => {
+
     props.setTypedName(e.target.value);
   };
 
