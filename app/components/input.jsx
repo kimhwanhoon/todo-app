@@ -76,11 +76,11 @@ const Input = (props) => {
           className="w-3/4 border-b-4 border-b-indigo-950 mb-5"
         ></div>
         <div className="flex items-center">
-          <div>
+          <div className="w-full">
             <input
               autoComplete="off"
               id="todo-textarea"
-              className="text-gray-600 shadow-md resize-none h-10 rounded-md w-96 focus:outline-indigo-400 p-4 focus:scale-105 ease-out duration-300"
+              className="text-gray-600 shadow-md resize-none h-10 rounded-md w-full focus:outline-indigo-400 p-4 focus:scale-105 ease-out duration-300"
               value={props.typedValue}
               placeholder="Please write new to do task."
               onChange={(e) => todoTextOnChangeHandler(e)}
@@ -89,7 +89,7 @@ const Input = (props) => {
             <input
               id="time-input"
               type="time"
-              className="text-gray-600 w-96 shadow-md rounded-md mt-3 p-4 focus:outline-indigo-400 focus:scale-105 ease-out duration-300 h-10 text-center"
+              className="text-gray-600 w-full shadow-md rounded-md mt-3 p-4 focus:outline-indigo-400 focus:scale-105 ease-out duration-300 h-10 text-center"
               value={props.typedTime}
               onChange={(e) => TimeOnChangeHandler(e)}
               onKeyDown={handleKeyPressOnTimeInput}
@@ -100,7 +100,7 @@ const Input = (props) => {
             id="add-button"
             type="button"
             value="Add"
-            className="w-2/6 h-full bg-indigo-500 shadow-lg shadow-indigo-500/50 rounded-lg text-white hover:bg-indigo-400 cursor-pointer active:scale-95 ease-out duration-300 hover:scale-x-105"
+            className="w-2/6 h-full bg-indigo-500 shadow-lg shadow-indigo-500/50 rounded-lg text-white hover:bg-indigo-400 cursor-pointer active:scale-95 ease-out duration-300 hover:scale-x-105 min-w-120 ml-3 max-w-120"
             onClick={(e) => addOnClickHandler(e)}
           />
         </div>

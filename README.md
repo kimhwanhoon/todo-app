@@ -1,3 +1,5 @@
+![sample_img](https://i.ibb.co/n1Xdsn7/Screen-Shot-2023-06-15-at-18-08-24-PM.png)
+
 # 리액트 프로젝트 To do App
 
 이번에 배운 `setState` 훅과 `props`를 사용하여 to do app을 만들었습니다.
@@ -22,7 +24,7 @@ state는 총 4개를 사용하였으며, 모두 `main.jsx`에서 생성하여 �
 |    [cardsArr, setCardsArr]    | 진행중인 todo의 정보를 갖는 state  |
 | [doneCardArr, setDoneCardArr] |  완료된 todo의 정보를 갖는 state   |
 |  [typedValue, setTypedValue]  | todo textarea의 value를 갖는 state |
-|   [typedName, setTypedName]   |   todo name의 value를 갖는 state   |
+|   [typedTime, setTypedTime]   |   todo time의 value를 갖는 state   |
 
 ---
 
