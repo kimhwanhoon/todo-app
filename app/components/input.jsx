@@ -26,11 +26,11 @@ const Input = (props) => {
     }
     const year = new Date().getFullYear();
     const month = new Date().getMonth();
-    const day = new Date().getDay();
+    const day = new Date().getDate();
     const hour = new Date().getHours();
     const minute = new Date().getMinutes();
     const filteredMinute = String(minute).length === 1 ? '0' + minute : minute;
-    const time = `${year}.${month}.${day} ${hour}:${filteredMinute}`;
+    const time = `${year}.${month + 1}.${day} ${hour}:${filteredMinute}`;
     props.setCardsArr((prev) => {
       const updatedCardsArr = [
         ...props.cardsArr,
