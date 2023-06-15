@@ -1,3 +1,5 @@
+![sample_img](https://i.ibb.co/n1Xdsn7/Screen-Shot-2023-06-15-at-18-08-24-PM.png)
+
 # 리액트 프로젝트 To do App
 
 이번에 배운 `setState` 훅과 `props`를 사용하여 to do app을 만들었습니다.
