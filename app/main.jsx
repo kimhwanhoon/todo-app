@@ -46,6 +46,7 @@ const Main = () => {
         setDoneCardArr={setDoneCardArr}
         saveOnLocalProgress={saveOnLocalProgress}
       />
+
       <InProgressCards
         cardsArr={cardsArr}
         setCardsArr={setCardsArr}

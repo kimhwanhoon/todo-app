@@ -17,6 +17,12 @@ module.exports = {
       },
       minWidth: {
         800: '800px',
+        120: '80px',
+      },
+      maxWidth: {
+        120: '120px',
+        100: '100px',
+        140: '140px',
       },
     },
   },
