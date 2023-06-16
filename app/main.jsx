@@ -15,20 +15,20 @@ const Main = () => {
   // Todo name value 배열
   const [typedTime, setTypedTime] = useState('');
 
-  // local 받아오기
+  // localStorage에서 in progress cards, done cards 받아오기
   useEffect(() => {
-    const progressCardsOnLocal =
-      JSON.parse(localStorage.getItem('progress')) ?? [];
-    const doneCardsOnLocal = JSON.parse(localStorage.getItem('done')) ?? [];
-    setCardsArr(progressCardsOnLocal);
-    setDoneCardArr(doneCardsOnLocal);
+    setCardsArr(JSON.parse(localStorage.getItem('progress')) ?? []);
+    setDoneCardArr(JSON.parse(localStorage.getItem('done')) ?? []);
   }, []); //빈 배열을 의미하는 두 번째 인자로 전달하여 페이지가 마운트될 때 한 번만 실행되도록 설정
-  // local에 저장하기 progress
+  // local에 저장하기 in progress cards => props로 물려줄 예정
+  // Add 버튼누르면 실행
   const saveOnLocalProgress = (prevCardsArr) => {
     localStorage.setItem('progress', JSON.stringify(prevCardsArr));
   };
-  // local에 저장하기 done
+  // local에 저장하기 done cards  => props로 물려줄 예정
+  // in progress 카드에서 완료버튼 누르면 실행
   const saveOnLocalDone = (prevCardsArr) => {
+    // 로컬저장소에 done이란 key가 있으면 받아오고, 없으면 빈 배열 생성
     const localData = JSON.parse(localStorage.getItem('done')) ?? [];
     const addedData = [...localData, ...prevCardsArr];
     localStorage.setItem('done', JSON.stringify(addedData));

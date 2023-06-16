@@ -1,16 +1,21 @@
 'use client';
 
+// Done 카드
 const DoneCards = ({ doneCardArr, setDoneCardArr, setCardsArr }) => {
-  // DELETE DONE CARD
+  // Done 카드 제거 버튼 클릭 시 실행 함수
   const deleteDoneCard = (key) => {
     if (confirm('Are you sure to delete this task?')) {
+      // 사용자에게 다시 물어봐서 확인 시 함수 실행
+      // 로컬저장소에서 done 키를 가져와서 변수로 지정
       const localDoneCards = JSON.parse(localStorage.getItem('done'));
+      // 클릭한 카드의 key값과 로컬저장소의 카드의 id가 일치하면 그 카드를 제외한 새로운 배열 생성
       const updatedDoneCards = localDoneCards.filter((card) => card.id !== key);
+      // 로컬 저장소에 저장
       localStorage.setItem('done', JSON.stringify(updatedDoneCards));
-
       const filteredArr = doneCardArr.filter((card) => {
         return card.id !== key;
       });
+      // setDoneCardArr를 실행하여 클라이언트 상에서도 재랜더링
       setDoneCardArr(filteredArr);
     }
   };
@@ -38,7 +43,6 @@ const DoneCards = ({ doneCardArr, setDoneCardArr, setCardsArr }) => {
       setDoneCardArr(filteredArr);
     }
   };
-
   return (
     <div className="flex flex-col gap-2 w-full px-16">
       <div className="flex flex-col items-center divider">
@@ -67,6 +71,7 @@ const DoneCards = ({ doneCardArr, setDoneCardArr, setCardsArr }) => {
 
 export default DoneCards;
 
+// Done 카드 표시하기
 const ProjectCards = ({
   doneCardArr,
   deleteDoneCard,
