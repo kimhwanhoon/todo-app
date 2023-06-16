@@ -1,4 +1,4 @@
-![sample_img](https://i.ibb.co/n1Xdsn7/Screen-Shot-2023-06-15-at-18-08-24-PM.png)
+![sample_gif](https://i.ibb.co/zPyKYwB/gif.gif)
 
 # 리액트 프로젝트 To do App
 
