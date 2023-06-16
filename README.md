@@ -13,6 +13,8 @@
 
 state는 총 4개를 사용하였으며, 모두 `main.jsx`에서 생성하여 자식 컴포넌트인 `Done cards.jsx`, `In progress cards.jsx`, `input.jsx`로 props를 물려줬으며, 자식 컴포넌트는 그 props를 받아서 함수를 만들었습니다.
 
+**우측의 Environments에서 Vercel로 배포한 프리뷰 버전의 사이트를 확인 하실 수 있습니다.**
+
 ---
 
 사용한 state는 다음과 같습니다.
