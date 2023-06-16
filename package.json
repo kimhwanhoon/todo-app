@@ -13,6 +13,8 @@
     "@types/react": "18.2.12",
     "@types/react-dom": "18.2.5",
     "autoprefixer": "10.4.14",
+    "dom-loaded": "^3.0.0",
+    "element-ready": "^6.2.2",
     "eslint": "8.42.0",
     "eslint-config-next": "13.4.5",
     "next": "13.4.5",

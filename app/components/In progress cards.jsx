@@ -51,7 +51,7 @@ const InProgressCards = ({ cardsArr, setCardsArr, setDoneCardArr }) => {
   return (
     <div className="flex flex-col gap-2 w-full px-16">
       <div className="flex flex-col items-center divider">
-        <h1 className="divider-h1 w-32 text-xl font-medium text-gray-700">
+        <h1 className="divider-h1 w-32 text-xl font-medium text-gray-700 cursor-default">
           In Progress
         </h1>
         <div
@@ -82,13 +82,13 @@ const ProjectCards = ({
     return (
       <div
         key={card.id}
-        className="progress-cards flex flex-col shadow-md shadow-indigo-200 rounded-md w-2/3 bg-white"
+        className="progress-cards flex flex-col shadow-md shadow-indigo-200 rounded-md w-full bg-white cursor-default max-w-2xl"
       >
         <div className="flex justify-between border-b border-b-slate-300 items-center">
           <input
             type="text"
             readOnly
-            className="w-full resize-none px-5 h-12 outline-none rounded-t-md  text-gray-800 "
+            className="w-full resize-none px-5 h-12 outline-none rounded-t-md  text-gray-800 cursor-default"
             value={card.text}
           />
           <div className="flex gap-3 pr-7">
