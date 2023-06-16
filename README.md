@@ -1,4 +1,4 @@
-![sample_gif](https://i.ibb.co/zPyKYwB/gif.gif)
+![sample_gif](https://i.ibb.co/WVYj42M/readme-gif.gif)
 
 # 리액트 프로젝트 To do App
 
