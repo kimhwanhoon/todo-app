@@ -1,36 +1,49 @@
 'use client';
 
+// 가져온 props들이 너무 많아서 구조분해할당이 아닌 props 객체를 가져왔습니다.
 const Input = (props) => {
+  // todo input 키 반응 핸들러
   const todoTextOnChangeHandler = (e) => {
     props.setTypedValue(e.target.value);
   };
+  // time input 키 반응 핸들러
   const TimeOnChangeHandler = (e) => {
     props.setTypedTime(e.target.value);
   };
 
-  // ADD BUTTON => ADD CARD
+  // ADD 버튼 클릭 -> In Progress 카드 추가
   const addOnClickHandler = (e) => {
-    // if no value on textarea or name input, make error message and return.
+    const textarea = e.target.parentNode.querySelector('#todo-textarea');
+    // if no value on todo input or name input, make error message and return.
     if (props.typedValue === '' && props.typedTime !== '') {
       alert('Please write your task.');
-      const textarea = e.target.parentNode.querySelector('#todo-textarea');
       textarea.focus();
       return;
     } else if (props.typedValue === '') {
       alert('Please write your task.');
+      textarea.focus();
       return;
     } else if (props.typedTime === '') {
       alert('Please choose target time.');
       e.target.focus();
       return;
     }
+    // 작성 시각 생성하기
     const year = new Date().getFullYear();
-    const month = new Date().getMonth();
+    // JS에서 month는 0부터 시작하므로 1을 추가
+    const month = new Date().getMonth() + 1;
+    // month가 1의 자리면 앞에 0을 붙여 균형있게 만들기
+    const filteredMonth = String(month).length === 1 ? '0' + month : month;
     const day = new Date().getDate();
     const hour = new Date().getHours();
     const minute = new Date().getMinutes();
+    // 분 단위에서 한 자리면 앞에 0을 붙여서 균형있게 만들기
     const filteredMinute = String(minute).length === 1 ? '0' + minute : minute;
-    const time = `${year}.${month + 1}.${day} ${hour}:${filteredMinute}`;
+    const time = `${year}.${filteredMonth}.${day} ${hour}:${filteredMinute}`;
+    // setCardsArr풀어서 쓴 이유
+    // setCardsArr 함수안에 props.saveOnLocalProgress(updatedCardsArr);를 쓰지 않으면
+    // 계속 한 박자 늦게 업데이트가 되는 문제가 있었습니다.
+    // setCardsArr 함수가 비동기 함수라서 그런것을 추측하고 있습니다.
     props.setCardsArr((prev) => {
       const updatedCardsArr = [
         ...props.cardsArr,
@@ -51,7 +64,7 @@ const Input = (props) => {
   const handleKeyPressOnTimeInput = (e) => {
     if (e.key === 'Enter') {
       const timeInput = e.target.parentNode.querySelector('#time-input');
-      timeInput.blur();
+      timeInput.blur(); // add 버튼 누르고 마지막 인풋에서 포커스 떼기
       addOnClickHandler(e);
     } else if (e.key === 'Escape') {
       // typed ESC, get rid of focus on input
@@ -59,7 +72,7 @@ const Input = (props) => {
     }
   };
   const handleKeyPressOnTodoTextarea = (e) => {
-    // typed ESC, get rid of focus on input
+    // if typed ESC, get rid of focus on input
     if (e.key === 'Escape') {
       e.target.blur();
     }
