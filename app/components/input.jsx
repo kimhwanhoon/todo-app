@@ -100,7 +100,7 @@ const Input = (props) => {
             id="add-button"
             type="button"
             value="Add"
-            className="w-2/6 h-full bg-indigo-500 shadow-lg shadow-indigo-500/50 rounded-lg text-white hover:bg-indigo-400 cursor-pointer active:scale-95 ease-out duration-300 hover:scale-x-105 min-w-120 ml-3 max-w-120"
+            className="w-2/6 h-full bg-indigo-500 shadow-lg shadow-indigo-500/50 rounded-lg text-white hover:bg-indigo-400 cursor-pointer active:scale-95 ease-out duration-300 min-w-120 ml-3 max-w-120"
             onClick={(e) => addOnClickHandler(e)}
           />
         </div>

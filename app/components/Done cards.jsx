@@ -42,7 +42,7 @@ const DoneCards = ({ doneCardArr, setDoneCardArr, setCardsArr }) => {
   return (
     <div className="flex flex-col gap-2 w-full px-16">
       <div className="flex flex-col items-center divider">
-        <h1 className="divider-h1 w-32 text-xl font-medium text-gray-700 pt-5">
+        <h1 className="divider-h1 w-32 text-xl font-medium text-gray-700 pt-5 cursor-default">
           Done
         </h1>
         <div
@@ -76,13 +76,13 @@ const ProjectCards = ({
     return (
       <div
         key={card.id}
-        className="done-cards flex flex-col shadow-md shadow-indigo-200 rounded-md w-2/3 bg-white"
+        className="done-cards flex flex-col shadow-md shadow-indigo-200 rounded-md w-full bg-white cursor-default max-w-2xl"
       >
         <div className="flex justify-between border-b border-b-slate-300 items-center">
           <input
             type="text"
             readOnly
-            className="w-full resize-none px-5 h-12 outline-none rounded-t-md  text-gray-800 "
+            className="w-full resize-none px-5 h-12 outline-none rounded-t-md  text-gray-800 cursor-default"
             value={card.text}
           />
           <div className="flex gap-3 pr-7">
@@ -102,7 +102,7 @@ const ProjectCards = ({
         </div>
 
         <div className="flex justify-between items-center py-2">
-          <h1 className="pl-5 mr-1 text-gray-700 tracking-wide">DONE !</h1>
+          <h1 className="pl-5 mr-1 text-gray-700 font-medium text-xs">Done</h1>
           <p className="w-64 text-xs px-3 text-right">Wrote at: {card.time}</p>
         </div>
       </div>
